@@ -11,6 +11,7 @@ const App = () => {
 
   return (
     <div>
+      <h1>Hello word!</h1>
       <h1>My Item List:</h1>
       <ItemList items={items} />
       <AddItemForm onAddItem={addItem} /> {/* addform */}
