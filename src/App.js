@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
-import ItemList from './Itemlist';
-import AddItemForm from './AddItemForm';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter,  Route, Routes } from "react-router-dom";
+import Nav from "./pages/Nav";
+import Home from "./pages/Home";
+import Users from "./pages/Users";
+import UserDetails from "./pages/UserDetails";
 
-const App = () => {
-  const [items, setItems] = useState (['Phone', 'Laptop', 'Orange' , 'Melon']);
-
-  const addItem = (newItem) => {
-    setItems([...items, newItem]);
-  };
-
+export default function App() {
   return (
-    <div>
-      <div class = "_block1" >
-      <h1>Hello word!</h1>
-      </div>
-      <h1>My Item List:</h1>
-      <ItemList items={items} />
-      <AddItemForm onAddItem={addItem} /> {/* addform */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Nav />}>
+          <Route index element={<Home />} />
+          <Route path="users" element={<Users />} />
+          <Route path="users/:id" element={<UserDetails />} />
+          <Route path="*" element={<h2>404 - Page not found</h2>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
