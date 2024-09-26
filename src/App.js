@@ -1,25 +1,52 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter,  Route, Routes } from "react-router-dom";
-import Nav from "./pages/Nav";
-import Home from "./pages/Home";
-import Users from "./pages/Users";
-import UserDetails from "./pages/UserDetails";
+import { createContext, useContext, useState } from 'react';
 
-export default function App() {
+const ThemeContext = createContext(null);
+
+export default function MyApp() {
+  const [theme, setTheme] = useState('light');
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Nav />}>
-          <Route index element={<Home />} />
-          <Route path="users" element={<Users />} />
-          <Route path="users/:id" element={<UserDetails />} />
-          <Route path="*" element={<h2>404 - Page not found</h2>} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeContext.Provider value={theme}>
+      <Form />
+      <label>
+        <input
+          type="checkbox"
+          checked={theme === 'dark'}
+          onChange={(e) => {
+            setTheme(e.target.checked ? 'dark' : 'light')
+          }}
+        />
+        Темний режим
+      </label>
+    </ThemeContext.Provider>
+  )
+}
+
+function Form({ children }) {
+  return (
+    <Panel title="Ласкаво просимо">
+      <Button>Зареєструватися</Button>
+      <Button>Увійти</Button>
+    </Panel>
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+function Panel({ title, children }) {
+  const theme = useContext(ThemeContext);
+  const className = 'panel-' + theme;
+  return (
+    <section className={className}>
+      <h1>{title}</h1>
+      {children}
+    </section>
+  )
+}
+
+function Button({ children }) {
+  const theme = useContext(ThemeContext);
+  const className = 'button-' + theme;
+  return (
+    <button className={className}>
+      {children}
+    </button>
+  );
+}

@@ -21,3 +21,25 @@ code {
 .users_dt{
 text-align: center;
 }
+.panel-light {
+  background-color: white;
+  color: black;
+}
+
+.panel-dark {
+  background-color: rgb(7, 8, 34);
+  color: white;
+}
+
+.button-light {
+  background-color: lightgray;
+  color: black;
+}
+
+.button-dark {
+  background-color: rgb(128, 128, 128);
+  color: white;
+}
+button{
+margin: 20px;
+}
