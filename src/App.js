@@ -11,7 +11,7 @@ export default function MyApp() {
     <ThemeContext.Provider value={theme}>
       <ClickContext.Provider value={{ clickCount, setClickCount }}>
         <Form />
-        <label>
+        <label class="dark_m">
           <input
             type="checkbox"
             checked={theme === 'dark'}
