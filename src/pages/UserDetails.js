@@ -14,7 +14,7 @@ const UserDetails = () => {
     const user = users.find(user => user.id === id);
 
     return (
-        <div>
+        <div class="users_dt">
             <h1>User Details Page</h1>
             {user ? (
                 <>
@@ -23,7 +23,7 @@ const UserDetails = () => {
                    
                 </>
             ) : (
-                <p>User not found.</p>
+                <p>404</p>
             )}
         </div>
     );
