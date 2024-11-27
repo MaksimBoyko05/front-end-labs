@@ -1,35 +1,53 @@
-import React, { useState } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import UserProfile from "./components/UserProfile";
-import Footer from "./components/Footer";
+import React, { useState } from 'react';
+import _ from 'lodash';
 
-const fetchUserData = async () => {
-	return {
-		name: "Bob",
-		age: 25,
-		email: "example@example.com",
-	};
+const NumberList = () => {
+  const generateRandomNumbers = () =>
+    Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
+
+  const [numbers, setNumbers] = useState(generateRandomNumbers());
+  const [sortedNumbers, setSortedNumbers] = useState([]);
+  const [average, setAverage] = useState(0);
+
+  const calculateAverage = (nums) => {
+    return nums.length ? _.mean(nums).toFixed(2) : 0;
+  };
+
+  const handleGenerate = () => {
+    const newNumbers = generateRandomNumbers();
+    setNumbers(newNumbers);
+    setSortedNumbers([]);
+    setAverage(calculateAverage(newNumbers));
+  };
+
+  const handleSort = () => {
+    const sorted = _.sortBy(numbers);
+    setSortedNumbers(sorted);
+  };
+
+  const handleFilterEven = () => {
+    const filtered = _.filter(numbers, (num) => num % 2 === 0);
+    setSortedNumbers(filtered);
+  };
+
+  return (
+    <div style={{ fontFamily: 'Arial, sans-serif', margin: '20px' }}>
+      <h2>Список випадкових чисел</h2>
+      <p><strong>Початковий список:</strong> {numbers.join(', ')}</p>
+      <p><strong>Оброблений список:</strong> {sortedNumbers.join(', ')}</p>
+      <p><strong>Середнє значення:</strong> {average}</p>
+
+      <button onClick={handleGenerate} style={{ marginRight: '10px' }}>
+        Згенерувати новий список
+      </button>
+      <button onClick={handleSort} style={{ marginRight: '10px' }}>
+        Сортувати
+      </button>
+      <button onClick={handleFilterEven}>
+        Фільтрувати парні числа
+      </button>
+    </div>
+  );
 };
 
-export default function App() {
-	const [showUserProfile, setShowUserProfile] = useState(false);
-
-	const handleShowProfile = () => setShowUserProfile(true);
-
-	return (
-		<div className="app-container">
-			<Header />
-			<main>
-				<h2>Головна сторінка</h2>
-				<button onClick={handleShowProfile}>
-					Показати профіль користувача
-				</button>
-				{showUserProfile && (
-					<UserProfile fetchUserData={fetchUserData} />
-				)}
-			</main>
-			<Footer />
-		</div>
-	);
-}
+export default NumberList;
