@@ -23,7 +23,7 @@ export default function App() {
 			<main>
 				<h2>Головна сторінка</h2>
 				<button onClick={handleShowProfile}>
-					Показати профіль користувача
+					 Профіль користувача
 				</button>
 				{showUserProfile && (
 					<UserProfile fetchUserData={fetchUserData} />
