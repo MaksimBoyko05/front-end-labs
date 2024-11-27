@@ -1,39 +1,35 @@
-import React, { Component } from 'react';
-import Header from './Header';
-import UserProfile from './UserProfile';
-import Footer from './Footer';
+import React, { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import UserProfile from "./components/UserProfile";
+import Footer from "./components/Footer";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-    };
-  }
+const fetchUserData = async () => {
+	return {
+		name: "Bob",
+		age: 25,
+		email: "example@example.com",
+	};
+};
 
-  loadUser = () => {
-    fetch('/api/user')
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ user: data });
-      })
-      .catch((error) => {
-        console.error('Error fetching user:', error);
-      });
-  };
+export default function App() {
+	const [showUserProfile, setShowUserProfile] = useState(false);
 
-  render() {
-    const { user } = this.state;
+	const handleShowProfile = () => setShowUserProfile(true);
 
-    return (
-      <div>
-        <Header />
-        <button onClick={this.loadUser}>Load User</button>
-        {user && <UserProfile user={user} />}
-        <Footer />
-      </div>
-    );
-  }
+	return (
+		<div className="app-container">
+			<Header />
+			<main>
+				<h2>Головна сторінка</h2>
+				<button onClick={handleShowProfile}>
+					Показати профіль користувача
+				</button>
+				{showUserProfile && (
+					<UserProfile fetchUserData={fetchUserData} />
+				)}
+			</main>
+			<Footer />
+		</div>
+	);
 }
-
-export default App;
