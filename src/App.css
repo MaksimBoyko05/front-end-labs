@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+.app-container {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: #f7f7f7;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header {
+	background-color: #720e9e;
+	color: white;
+	padding: 15px;
+	text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+footer {
+	background-color: #720e9e;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	margin-top: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+main {
+	padding: 20px;
+	text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+	background-color: #DDA0DD;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 5px;
+	margin-top: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:hover {
+	background-color: #662d91;
+}
+
+h2 {
+	font-size: 24px;
+	color: #333;
+}
+
+p {
+	font-size: 18px;
+	color: #555;
+}
+
+.user-profile {
+	background-color: white;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	max-width: 400px;
+	margin: 30px auto;
+}
+
+.user-profile p {
+	margin: 10px 0;
 }
